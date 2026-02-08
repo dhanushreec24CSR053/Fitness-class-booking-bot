@@ -1,0 +1,126 @@
+Introduction
+
+The Fitness Class Booking Bot automates the process of fitness class reservations, making it easier for users to interact with gyms or studios without manually contacting staff.
+
+Objectives:
+
+Provide a 24/7 booking system for fitness enthusiasts
+
+Reduce administrative overhead for fitness centers
+
+Provide an intelligent assistant that understands natural language
+
+2. System Architecture
+
+Components:
+
+User Interface: Web-based chat window or messaging platform interface (e.g., WhatsApp, Slack)
+
+Bot Engine / NLP Module: Uses intent recognition to interpret user commands (Rasa/Dialogflow/NLTK)
+
+Backend Server: Handles API calls, business logic, and communicates with the database
+
+Database: Stores user profiles, class schedules, bookings, and notifications
+
+Scheduler: Sends reminders and notifications for booked classes
+
+Flow Diagram:
+
+User → Chatbot Interface → NLP Engine → Backend → Database
+                 ↑                             |
+                 |-----------------------------|
+
+3. Database Design
+
+Tables:
+
+Users
+
+user_id (PK)
+
+name
+
+email
+
+phone
+
+preferences
+
+Classes
+
+class_id (PK)
+
+class_name
+
+category
+
+date
+
+time
+
+capacity
+
+Bookings
+
+booking_id (PK)
+
+user_id (FK)
+
+class_id (FK)
+
+status (booked/cancelled)
+
+timestamp
+
+Notifications
+
+notification_id (PK)
+
+user_id (FK)
+
+class_id (FK)
+
+notification_type (reminder, confirmation)
+
+sent_time
+
+4. Bot Functionalities
+Feature	Description
+List Classes	Shows all available classes for a given date or category
+Book Class	Allows users to book a class if seats are available
+Cancel Class	Allows users to cancel a booking before a cutoff time
+Personalized Recommendations	Suggests classes based on user history or preferences
+Reminders	Sends notifications before class start time
+5. NLP Implementation
+
+Intents: BookClass, CancelClass, ShowClasses, Recommendations
+
+Entities: class_name, date, time
+
+Example:
+
+User: “Book me for Yoga at 6 PM on Friday”
+
+Intent: BookClass
+
+Entities: class_name: Yoga, time: 6 PM, date: Friday
+
+6. Deployment
+
+Run the backend server (Flask/FastAPI)
+
+Connect the bot interface (web/chat) to the server
+
+Set up database on cloud (AWS RDS / Heroku Postgres)
+
+Deploy the bot to a platform (Heroku, AWS EC2, or Docker container)
+
+7. Future Enhancements
+
+Integration with payment gateways for paid classes
+
+AI-powered fitness recommendations based on user goals
+
+Voice-enabled bot using speech recognition
+
+Analytics dashboard for gym administrators to track bookings
